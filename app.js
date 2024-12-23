@@ -1,3 +1,4 @@
+localStorage.clear();
 let tasks = JSON.parse(localStorage.getItem('tasks')) || {};
 
 document.getElementById('add-child').addEventListener('click', () => {
