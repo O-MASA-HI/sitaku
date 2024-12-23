@@ -60,7 +60,7 @@ function renderTaskSections() {
             </div>
             <ul id="task-list-${childId}">
             </ul>
-            <input type="text" id="new-task-${childId}" placeholder="新しいタスクを追加">
+            <input type="text" id="new-task-${childId}" placeholder="新しいやること">
             <button onclick="addTask('${childId}')">追加</button>
         `;
         taskSections.appendChild(section);
