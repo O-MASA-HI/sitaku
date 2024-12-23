@@ -72,7 +72,13 @@ function renderTasks(childId) {
     taskList.innerHTML = '';
     tasks[childId].taskList.forEach((task, index) => {
         const li = document.createElement('li');
-        li.innerHTML = `${task} <button onclick="completeTask('${childId}', ${index})">完了</button>`;
+        li.innerHTML = `
+            ${task}
+            <button onclick="completeTask('${childId}', ${index})">完了</button>
+        `;
+        if (task.completed) {
+            li.classList.add('completed');
+        }
         taskList.appendChild(li);
     });
 }
@@ -82,7 +88,7 @@ function addTask(childId) {
     const taskText = input.value.trim();
 
     if (taskText) {
-        tasks[childId].taskList.push(taskText);
+        tasks[childId].taskList.push({ text: taskText, completed: false });
         localStorage.setItem('tasks', JSON.stringify(tasks));
         input.value = '';
         renderTasks(childId);
@@ -90,7 +96,7 @@ function addTask(childId) {
 }
 
 function completeTask(childId, index) {
-    tasks[childId].taskList.splice(index, 1);
+    tasks[childId].taskList[index].completed = true;
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks(childId);
 }
