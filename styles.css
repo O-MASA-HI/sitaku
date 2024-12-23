@@ -1,143 +1,129 @@
-/* 基本的なスタイル */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f9;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-/* 名前とタスクのセクション */
-#task-sections {
-    display: flex;
-    gap: 20px; /* セクション間の間隔 */
-    overflow-x: auto; /* 横スクロール */
+#app {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
     padding: 10px;
-}
-
-/* 各子供のセクション */
-.user-section {
-    background-color: #fff;
     border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 10px;
-    width: 250px; /* セクションの幅 */
-    min-width: 200px; /* セクションの最小幅 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 5px;
 }
 
-/* 名前表示部分 */
+h1 {
+    color: #5c85d6;
+}
+
+#add-child-container {
+    margin-bottom: 20px;
+}
+
+#add-child-container input {
+    padding: 10px;
+    font-size: 16px;
+    width: 70%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#add-child-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #5c85d6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-child-container button:hover {
+    background-color: #466bb7;
+}
+
+.user-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
 .name-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .name-container h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .name-container input {
-    font-size: 16px;
     padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    font-size: 16px;
+    width: 60%;
+    display: inline-block;
 }
 
-button {
+.name-container button {
     padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     font-size: 14px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* 削除ボタン */
-.delete-button {
-    background-color: #f44336;
-    color: white;
+    margin-left: 5px;
     border: none;
-    border-radius: 5px;
-    padding: 3px 7px;
-    font-size: 12px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.delete-button:hover {
-    background-color: #e53935;
+.name-container button:hover {
+    background-color: #d6d6d6;
 }
 
-/* タスクリスト */
 ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 ul li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-bottom: 8px;
-    padding: 8px;
-    border-radius: 5px;
-}
-
-/* 花丸のアイコンを左側に表示する */
-ul li.completed {
-    display: flex;
-    align-items: center;
-    background-color: #e6f7e6; /* 完了時の背景色（緑っぽい） */
-    color: #4CAF50; /* 完了時の文字色 */
-    font-weight: bold;
-}
-
-ul li.completed::before {
-    content: '🌸'; /* 花丸の絵文字（自由に変更可能） */
-    margin-right: 10px;
-    font-size: 20px; /* アイコンサイズ */
-}
-
-/* タスク入力フォーム */
-input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+    margin: 5px 0;
+    padding: 10px;
+    background: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* エラーメッセージ */
+ul li.completed {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+ul li button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5c85d6;
+    color: white;
+    cursor: pointer;
+}
+
+ul li button:hover {
+    background-color: #466bb7;
+}
+
 .hidden {
     display: none;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 1024px) {
-    #task-sections {
-        flex-wrap: wrap; /* 横並びで表示するが、画面幅に応じて折り返し可能 */
-        justify-content: space-evenly; /* セクションを均等に並べる */
-    }
-
-    .user-section {
-        width: 300px; /* iPadやタブレットのサイズに合わせてセクションの幅を調整 */
-        min-width: 250px;
-    }
-}
-
-/* スマートフォン向け（小さな画面） */
-@media (max-width: 768px) {
-    #task-sections {
-        flex-direction: column; /* 小さい画面では縦に並べる */
-        align-items: center;
-    }
 }
