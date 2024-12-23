@@ -13,6 +13,12 @@ document.getElementById('add-child').addEventListener('click', () => {
     }
 });
 
+function deleteChild(childId) {
+    delete tasks[childId];
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    renderTaskSections();
+}
+
 function editChildName(childId) {
     const nameDisplay = document.getElementById(`child-name-display-${childId}`);
     const nameInput = document.getElementById(`child-name-input-${childId}`);
@@ -49,6 +55,7 @@ function renderTaskSections() {
                 <h2 id="child-name-display-${childId}">${childData.name}</h2>
                 <input type="text" id="child-name-input-${childId}" class="hidden" value="${childData.name}">
                 <button onclick="editChildName('${childId}')">編集</button>
+                <button class="delete-button" onclick="deleteChild('${childId}')">削除</button>
             </div>
             <ul id="task-list-${childId}">
             </ul>
