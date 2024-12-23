@@ -1,16 +1,111 @@
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タスクリスト</title>
-    <!-- CSSファイルのリンク -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>タスクリスト</h1>
-    <input type="text" id="child-name" placeholder="子供の名前を入力">
-    <button id="add-child">名前を追加</button>
-    <div id="task-sections"></div>
-    <script src="app.js"></script>
-</body>
-</html>
+/* 基本的なスタイル */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+}
+
+/* 名前とタスクのセクション */
+#task-sections {
+    display: flex;
+    gap: 20px; /* セクション間の間隔 */
+    overflow-x: auto; /* 横スクロール */
+    padding: 10px;
+}
+
+/* 各子供のセクション */
+.user-section {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px; /* セクションの幅 */
+    min-width: 200px; /* セクションの最小幅 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 名前表示部分 */
+.name-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.name-container h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.name-container input {
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* タスクリスト */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul li button {
+    background-color: #f44336;
+    padding: 3px 7px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+ul li button:hover {
+    background-color: #e53935;
+}
+
+/* タスク入力フォーム */
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* エラーメッセージ */
+.hidden {
+    display: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    #task-sections {
+        flex-direction: column; /* 小さい画面では縦に並べる */
+        align-items: center;
+    }
+}
