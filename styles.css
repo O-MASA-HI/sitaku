@@ -118,6 +118,19 @@ input[type="text"] {
 }
 
 /* レスポンシブ対応 */
+@media (max-width: 1024px) {
+    #task-sections {
+        flex-wrap: wrap; /* 横並びで表示するが、画面幅に応じて折り返し可能 */
+        justify-content: space-evenly; /* セクションを均等に並べる */
+    }
+
+    .user-section {
+        width: 300px; /* iPadやタブレットのサイズに合わせてセクションの幅を調整 */
+        min-width: 250px;
+    }
+}
+
+/* スマートフォン向け（小さな画面） */
 @media (max-width: 768px) {
     #task-sections {
         flex-direction: column; /* 小さい画面では縦に並べる */
