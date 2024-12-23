@@ -1,4 +1,3 @@
-localStorage.clear();
 let tasks = JSON.parse(localStorage.getItem('tasks')) || {};
 
 document.getElementById('add-child').addEventListener('click', () => {
@@ -72,15 +71,19 @@ function renderTasks(childId) {
     const taskList = document.getElementById(`task-list-${childId}`);
     taskList.innerHTML = '';
     tasks[childId].taskList.forEach((task, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            ${task.text} <!-- タスクのtextプロパティを表示 -->
-            <button onclick="completeTask('${childId}', ${index})">完了</button>
-        `;
-        if (task.completed) {
-            li.classList.add('completed');
+        if (typeof task === 'object' && task.text) {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                ${task.text}
+                <button onclick="completeTask('${childId}', ${index})">完了</button>
+            `;
+            if (task.completed) {
+                li.classList.add('completed');
+            }
+            taskList.appendChild(li);
+        } else {
+            console.error('タスクの形式が不正です:', task);
         }
-        taskList.appendChild(li);
     });
 }
 
@@ -89,7 +92,7 @@ function addTask(childId) {
     const taskText = input.value.trim();
 
     if (taskText) {
-        tasks[childId].taskList.push({ text: taskText, completed: false }); // オブジェクトとして保存
+        tasks[childId].taskList.push({ text: taskText, completed: false });
         localStorage.setItem('tasks', JSON.stringify(tasks));
         input.value = '';
         renderTasks(childId);
