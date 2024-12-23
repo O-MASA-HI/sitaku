@@ -81,25 +81,29 @@ ul {
 }
 
 ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     margin-bottom: 8px;
     padding: 8px;
     border-radius: 5px;
+}
+
+/* 花丸のアイコンを左側に表示する */
+ul li.completed {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    background-color: #e6f7e6; /* 完了時の背景色（緑っぽい） */
+    color: #4CAF50; /* 完了時の文字色 */
+    font-weight: bold;
 }
 
-ul li button {
-    background-color: #f44336;
-    padding: 3px 7px;
-    font-size: 12px;
-    border-radius: 3px;
-}
-
-ul li button:hover {
-    background-color: #e53935;
+ul li.completed::before {
+    content: '🌸'; /* 花丸の絵文字（自由に変更可能） */
+    margin-right: 10px;
+    font-size: 20px; /* アイコンサイズ */
 }
 
 /* タスク入力フォーム */
