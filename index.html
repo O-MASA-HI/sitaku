@@ -1,49 +1,14 @@
-<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>支度リスト</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #task-sections {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto; /* 横スクロール対応 */
-        }
-        .user-section {
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            min-width: 200px;
-        }
-        .name-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        h2 {
-            margin: 0;
-        }
-        .hidden {
-            display: none;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        input {
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>タスクリスト</title>
+    <!-- CSSファイルのリンク -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>支度リスト</h1>
-    <input type="text" id="child-name" placeholder="名前を入力">
+    <h1>タスクリスト</h1>
+    <input type="text" id="child-name" placeholder="子供の名前を入力">
     <button id="add-child">名前を追加</button>
     <div id="task-sections"></div>
     <script src="app.js"></script>
