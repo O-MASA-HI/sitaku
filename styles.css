@@ -58,6 +58,21 @@ button:hover {
     background-color: #45a049;
 }
 
+/* 削除ボタン */
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 7px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+}
+
 /* タスクリスト */
 ul {
     list-style-type: none;
