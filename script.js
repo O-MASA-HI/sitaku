@@ -20,7 +20,7 @@ function deleteChild(childId) {
 }
 
 function editTask(childId, index) {
-    const taskText = prompt("やること変更:", tasks[childId].taskList[index].text);
+    const taskText = prompt("タスクを編集してください:", tasks[childId].taskList[index].text);
     if (taskText !== null) {
         tasks[childId].taskList[index].text = taskText.trim();
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -59,6 +59,7 @@ function renderTasks(childId) {
         li.innerHTML = `
             <span class="task-icon">${task.completed ? "🌸" : ""}</span>
             <span>${task.text}</span>
+            ${task.completed && task.completedAt ? `<span class="completed-time"> (${task.completedAt})</span>` : ""}
             <button onclick="editTask('${childId}', ${index})">編集</button>
             <button onclick="completeTask('${childId}', ${index})">${task.completed ? "未完了" : "完了"}</button>
         `;
@@ -72,7 +73,7 @@ function addTask(childId) {
     const taskText = input.value.trim();
 
     if (taskText) {
-        tasks[childId].taskList.push({ text: taskText, completed: false });
+        tasks[childId].taskList.push({ text: taskText, completed: false, completedAt: null });
         localStorage.setItem('tasks', JSON.stringify(tasks));
         input.value = '';
         renderTasks(childId);
@@ -80,7 +81,16 @@ function addTask(childId) {
 }
 
 function completeTask(childId, index) {
-    tasks[childId].taskList[index].completed = !tasks[childId].taskList[index].completed;
+    const task = tasks[childId].taskList[index];
+    task.completed = !task.completed;
+
+    if (task.completed) {
+        const now = new Date();
+        task.completedAt = now.toLocaleString(); // 完了時刻を記録
+    } else {
+        task.completedAt = null; // 未完了の場合は時刻をリセット
+    }
+
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks(childId);
 }
