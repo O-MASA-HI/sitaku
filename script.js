@@ -19,26 +19,12 @@ function deleteChild(childId) {
     renderTaskSections();
 }
 
-function editChildName(childId) {
-    const nameDisplay = document.getElementById(`child-name-display-${childId}`);
-    const nameInput = document.getElementById(`child-name-input-${childId}`);
-    const editButton = nameDisplay.nextElementSibling;
-
-    if (nameDisplay.classList.contains('hidden')) {
-        const newName = nameInput.value.trim();
-        if (newName) {
-            tasks[childId].name = newName;
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        }
-
-        nameDisplay.textContent = newName || tasks[childId].name;
-        nameDisplay.classList.remove('hidden');
-        nameInput.classList.add('hidden');
-        editButton.textContent = '編集';
-    } else {
-        nameInput.classList.remove('hidden');
-        nameDisplay.classList.add('hidden');
-        editButton.textContent = '保存';
+function editTask(childId, index) {
+    const taskText = prompt("タスクを編集してください:", tasks[childId].taskList[index].text);
+    if (taskText !== null) {
+        tasks[childId].taskList[index].text = taskText.trim();
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        renderTasks(childId);
     }
 }
 
@@ -52,10 +38,8 @@ function renderTaskSections() {
         section.id = `section-${childId}`;
         section.innerHTML = `
             <div class="name-container">
-                <h2 id="child-name-display-${childId}">${childData.name}</h2>
-                <input type="text" id="child-name-input-${childId}" class="hidden" value="${childData.name}">
-                <button onclick="editChildName('${childId}')">編集</button>
-                <button class="delete-button" onclick="deleteChild('${childId}')">削除</button>
+                <h2>${childData.name}</h2>
+                <button onclick="deleteChild('${childId}')">削除</button>
             </div>
             <ul id="task-list-${childId}">
             </ul>
@@ -71,19 +55,15 @@ function renderTasks(childId) {
     const taskList = document.getElementById(`task-list-${childId}`);
     taskList.innerHTML = '';
     tasks[childId].taskList.forEach((task, index) => {
-        if (typeof task === 'object' && task.text) {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                ${task.text}
-                <button onclick="completeTask('${childId}', ${index})">完了</button>
-            `;
-            if (task.completed) {
-                li.classList.add('completed');
-            }
-            taskList.appendChild(li);
-        } else {
-            console.error('タスクの形式が不正です:', task);
-        }
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span class="task-icon">${task.completed ? "🌸" : ""}</span>
+            <span>${task.text}</span>
+            <button onclick="editTask('${childId}', ${index})">編集</button>
+            <button onclick="completeTask('${childId}', ${index})">${task.completed ? "未完了" : "完了"}</button>
+        `;
+        if (task.completed) li.classList.add('completed');
+        taskList.appendChild(li);
     });
 }
 
@@ -100,7 +80,7 @@ function addTask(childId) {
 }
 
 function completeTask(childId, index) {
-    tasks[childId].taskList[index].completed = true;
+    tasks[childId].taskList[index].completed = !tasks[childId].taskList[index].completed;
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks(childId);
 }
