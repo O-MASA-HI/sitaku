@@ -116,6 +116,13 @@ ul li button:hover {
     background-color: #466bb7;
 }
 
+ul li .completed-time {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
 .hidden {
     display: none;
 }
