@@ -1,3 +1,4 @@
+/* 全体のスタイル */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -7,6 +8,7 @@ body {
     color: #333;
 }
 
+/* アプリの全体コンテナ */
 #app {
     width: 90%;
     max-width: 800px;
@@ -22,6 +24,7 @@ h1 {
     color: #5c85d6;
 }
 
+/* 子供の追加セクション */
 #add-child-container {
     margin-bottom: 20px;
 }
@@ -49,6 +52,7 @@ h1 {
     background-color: #466bb7;
 }
 
+/* 各子供のセクション */
 .user-section {
     margin-bottom: 20px;
     padding: 10px;
@@ -76,6 +80,7 @@ h1 {
     display: inline-block;
 }
 
+/* タスクリスト */
 ul {
     list-style: none;
     padding: 0;
@@ -91,6 +96,7 @@ ul li {
     align-items: center;
 }
 
+/* 完了済みタスク */
 ul li.completed {
     background-color: #d4edda;
     border-color: #c3e6cb;
@@ -101,21 +107,6 @@ ul li .task-icon {
     font-size: 20px;
 }
 
-ul li button {
-    margin-left: auto;
-    padding: 5px 10px;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    background-color: #5c85d6;
-    color: white;
-    cursor: pointer;
-}
-
-ul li button:hover {
-    background-color: #466bb7;
-}
-
 ul li .completed-time {
     margin-left: 10px;
     font-size: 14px;
@@ -123,6 +114,51 @@ ul li .completed-time {
     font-style: italic;
 }
 
-.hidden {
-    display: none;
+/* タスクの操作ボタン */
+ul li button {
+    margin-left: 5px;
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+ul li button:hover {
+    opacity: 0.8;
+}
+
+/* 完了ボタンを赤色に変更 */
+ul li button:nth-child(4) {
+    background-color: #e63946; /* 赤色 */
+    color: white;
+}
+
+ul li button:nth-child(4):hover {
+    background-color: #d62828; /* 少し暗い赤 */
+}
+
+/* 編集ボタン */
+ul li button:nth-child(3) {
+    background-color: #5c85d6;
+    color: white;
+}
+
+ul li button:nth-child(3):hover {
+    background-color: #466bb7;
+}
+
+/* 子供削除ボタン */
+.name-container button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e63946; /* 赤色 */
+    color: white;
+    cursor: pointer;
+}
+
+.name-container button:hover {
+    background-color: #d62828; /* 少し暗い赤 */
 }
