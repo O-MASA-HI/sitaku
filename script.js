@@ -20,7 +20,7 @@ function deleteChild(childId) {
 }
 
 function editTask(childId, index) {
-    const taskText = prompt("タスクを編集してください:", tasks[childId].taskList[index].text);
+    const taskText = prompt("やること変更:", tasks[childId].taskList[index].text);
     if (taskText !== null) {
         tasks[childId].taskList[index].text = taskText.trim();
         localStorage.setItem('tasks', JSON.stringify(tasks));
